@@ -48,3 +48,13 @@ Players can choose between easy, medium, and hard modes, each offering a unique 
 **3. Dynamic Game Reset**
 
 After each game, players can quickly restart with their preferred difficulty without needing to exit or reload, allowing for continuous gameplay flow.
+
+<hr>
+
+![img.png](img.png)
+
+![img_1.png](img_1.png)
+
+![img_2.png](img_2.png)
+
+![img_3.png](img_3.png)

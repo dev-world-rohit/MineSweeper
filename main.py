@@ -48,6 +48,7 @@ class Game:
         self.flag_sound = pygame.mixer.Sound('data/sounds/flag.mp3')
 
         self.clock = pygame.time.Clock()
+        self.start_time = pygame.time.get_ticks()
         self.fps = 30
 
         self.game_board = GameBoard(self.screen_size)
@@ -119,10 +120,11 @@ class Game:
     def main_loop(self):
         last_mine_discovered_time = 0
         uncover_interval = 200
+        self.start_time = pygame.time.get_ticks()
 
         while self.run:
             mouse_pos = pygame.mouse.get_pos()
-            elapsed_time = pygame.time.get_ticks()
+            elapsed_time = pygame.time.get_ticks() - self.start_time
             self.screen.fill((185, 122, 87))
             self.score_screen.fill((0, 0, 0))
             pygame.draw.line(self.score_screen, (255, 255, 255), (0, 0), (0, self.screen_size[1]), 2)
@@ -164,8 +166,6 @@ class Game:
             pygame.display.update()
             self.clock.tick(self.fps)
 
-        pygame.quit()
-
     def game_over(self):
         while self.run:
             self.screen.blit(self.game_over_image, (0, 0))
@@ -182,6 +182,8 @@ class Game:
                     if event.key == K_r:
                         self.victory = False
                         self.gaming_mode = False
+                        self.game_board.game_over = False
+                        self.game_board.mines_to_discover = None
                         self.home_screen()
 
                 if event.type == MOUSEBUTTONDOWN:
@@ -189,8 +191,6 @@ class Game:
 
             pygame.display.update()
             self.clock.tick(self.fps)
-
-        pygame.quit()
 
 
 game = Game()
